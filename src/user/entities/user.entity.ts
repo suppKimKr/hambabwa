@@ -1,7 +1,8 @@
-import {Column, Entity} from "typeorm";
+import {BeforeInsert, Column, Entity} from "typeorm";
 import {AutoIncrementIdEntity} from "../../database/auto-increment-id-entity";
 import {Exclude} from "class-transformer";
 import {UserRole} from "../enums/user.role.enum";
+import * as bcrypt from "bcrypt";
 
 @Entity('TB_USER')
 export class User extends AutoIncrementIdEntity {
@@ -26,4 +27,9 @@ export class User extends AutoIncrementIdEntity {
         default: 'https://image.hambabwa.kr/dev/profile/default.png',
     })
     public imageUrl: string;
+
+    @BeforeInsert()
+    hashPassword = async() => {
+        this.password = await bcrypt.hashSync(this.password, 10);
+    }
 }
