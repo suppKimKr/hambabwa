@@ -3,6 +3,7 @@ import {AutoIncrementIdEntity} from "../../database/auto-increment-id-entity";
 import {Exclude} from "class-transformer";
 import {UserRole} from "../enums/user.role.enum";
 import * as bcrypt from "bcrypt";
+import {OmitType} from "@nestjs/swagger";
 
 @Entity('TB_USER')
 export class User extends AutoIncrementIdEntity {
@@ -32,4 +33,10 @@ export class User extends AutoIncrementIdEntity {
     hashPassword = async() => {
         this.password = await bcrypt.hashSync(this.password, 10);
     }
+
+    getCurrentRefreshToken = async(refreshToken: string) => {
+        return await bcrypt.hash(refreshToken, 10);
+    }
 }
+
+export class ReadOnlyUserData extends OmitType(User, ["password"] as const) {}
