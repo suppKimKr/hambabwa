@@ -30,10 +30,12 @@ export class User extends AutoIncrementIdEntity {
     public imageUrl: string;
 
     @BeforeInsert()
+    @Exclude()
     hashPassword = async() => {
         this.password = await bcrypt.hashSync(this.password, 10);
     }
 
+    @Exclude()
     getCurrentRefreshToken = async(refreshToken: string) => {
         return await bcrypt.hash(refreshToken, 10);
     }

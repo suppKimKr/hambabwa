@@ -6,6 +6,8 @@ import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import * as Joi from "@hapi/joi";
+import {APP_INTERCEPTOR} from "@nestjs/core";
+import {TransformInterceptor} from "./common/interceptors/transform.interceptor";
 
 @Module({
   imports: [
@@ -26,6 +28,12 @@ import * as Joi from "@hapi/joi";
       AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+      AppService,
+      {
+          provide: APP_INTERCEPTOR,
+          useClass: TransformInterceptor,
+      },
+  ],
 })
 export class AppModule {}

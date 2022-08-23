@@ -3,11 +3,11 @@ import {map, Observable} from "rxjs";
 import {CommonResponse} from "../common.response";
 
 @Injectable()
-export class TransformInterceptor implements NestInterceptor {
+export class TransformInterceptor<T> implements NestInterceptor<T, CommonResponse<T>> {
     intercept(
         context: ExecutionContext,
         next: CallHandler,
-    ): Observable<any>
+    ): Observable<CommonResponse<T>>
     {
         return next.handle().pipe(map(data => new CommonResponse(HttpStatus.OK, data)));
     }
