@@ -14,6 +14,10 @@
 [강남함바](http://svc.hambabwa.kr/) 매일 바뀌는 함바집 메뉴. 오늘 내가 좋아하는 메뉴가 나온 곳은 어딜까?</br>
 하루하루 메뉴를 알 수 없는 강남 회사원들의 점심고민해결 솔루션.
 
+<p align="center">
+    <img src="https://image.hambabwa.kr/splash.png" width="100%" alt="hambabwa" />
+</p>
+
 ## WireFrame
 <p align="center">
   <img src="https://image.hambabwa.kr/wireframe.png" width="100%" alt="hambabwa" />
