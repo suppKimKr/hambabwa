@@ -1,6 +1,13 @@
 <p align="center">
   <a href="http://svc.hambabwa.kr/" target="blank"><img src="https://image.hambabwa.kr/ci.png" width="320" alt="hambabwa" /></a>
 </p>
+<p align="center">
+<img src="https://img.shields.io/badge/Nestjs-E0234E?style=flat-square&logo=Nestjs&logoColor=white" /> 
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=Typescript&logoColor=white" /> 
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>
+<img src="https://img.shields.io/badge/AmazonEC2-FF9900?style=flat-square&logo=AmazonEC2&logoColor=white"/> 
+<img src="https://img.shields.io/badge/AmazonS3-569A31?style=flat-square&logo=AmazonS3&logoColor=white"/>
+</p>
 
 ## Description
 
@@ -16,7 +23,7 @@
 
 - AWS EC2, S3
 - Nest.js
-- Mysql
+- Mysql, TypeORM
 
 ## Features
 #### - User Side
