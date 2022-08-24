@@ -15,7 +15,7 @@
 하루하루 메뉴를 알 수 없는 강남 회사원들의 점심고민해결 솔루션.
 
 <p align="center">
-    <img src="https://image.hambabwa.kr/splash.png" width="100%" alt="hambabwa" />
+    <img src="https://image.hambabwa.kr/splash.png" width="390" alt="hambabwa" />
 </p>
 
 ## WireFrame
