@@ -9,7 +9,7 @@
 
 ## WireFrame
 <p align="center">
-  <a href="http://svc.hambabwa.kr/" target="blank"><img src="https://image.hambabwa.kr/wireframe.png" width="640" alt="hambabwa" /></a>
+  <a href="http://svc.hambabwa.kr/" target="blank"><img src="https://image.hambabwa.kr/wireframe.png" width="100%" alt="hambabwa" /></a>
 </p>
 
 ## Infrastructure
