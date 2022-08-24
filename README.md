@@ -12,9 +12,11 @@
   <img src="https://image.hambabwa.kr/wireframe.png" width="100%" alt="hambabwa" />
 </p>
 
-## Infrastructure
+## BasedOn
 
-- AWS EC2, S3, 
+- AWS EC2, S3
+- Nest.js
+- Mysql
 
 ## Features
 #### - User Side
