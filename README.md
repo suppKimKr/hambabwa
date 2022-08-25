@@ -1,73 +1,54 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
+  <a href="http://svc.hambabwa.kr/" target="blank"><img src="https://image.hambabwa.kr/ci.png" width="320" alt="hambabwa" /></a>
 </p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+<p align="center">
+<img src="https://img.shields.io/badge/Nestjs-E0234E?style=flat-square&logo=Nestjs&logoColor=white" /> 
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=Typescript&logoColor=white" /> 
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>
+<img src="https://img.shields.io/badge/AmazonEC2-FF9900?style=flat-square&logo=AmazonEC2&logoColor=white"/> 
+<img src="https://img.shields.io/badge/AmazonS3-569A31?style=flat-square&logo=AmazonS3&logoColor=white"/>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[강남함바](http://svc.hambabwa.kr/) 매일 바뀌는 함바집 메뉴. 오늘 내가 좋아하는 메뉴가 나온 곳은 어딜까?</br>
+하루하루 메뉴를 알 수 없는 강남 회사원들의 점심고민해결 솔루션.
 
-## Installation
+<p align="center">
+    <img src="https://image.hambabwa.kr/splash.png" width="390" alt="hambabwa" />
+</p>
 
-```bash
-$ npm install
-```
+## WireFrame
+<p align="center">
+  <img src="https://image.hambabwa.kr/wireframe.png" width="100%" alt="hambabwa" />
+</p>
 
-## Running the app
+## BasedOn
 
-```bash
-# development
-$ npm run start
+- AWS EC2, S3
+- Nest.js
+- Mysql, TypeORM
 
-# watch mode
-$ npm run start:dev
+## Features
+#### - User Side
+- 회원가입
+- JWT 기반 로그인
+- 프로필 사진 등록 / 수정
+- 선호메뉴 저장 / 수정
+- 리뷰 저장 / 수정
+- **오늘의 음식점 추천 -> 선호메뉴 정렬 알고리즘(선호메뉴 / 메뉴 카테고리별 점수 계산)**   
+- 메뉴별 칼로리 확인
 
-# production mode
-$ npm run start:prod
-```
+#### - Backoffice
+- 음식점 등록 / 수정 / 삭제
+- 메뉴 등록 / 수정 / 삭제 (식약처 영양 DB 기준)
+- 메뉴 엑셀 업로드
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Progress
+Refactoring 20%
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- frontend - [hyundang](https://github.com/hyundang)
+- backend - [suppKimKr](https://github.com/suppKimKr), [hyeonjeong33](https://github.com/hyeonjeong33)
+- website - [강남함바](https://svc.hambabwa.com)
