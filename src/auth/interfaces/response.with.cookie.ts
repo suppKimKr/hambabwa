@@ -5,6 +5,6 @@ export interface ResponseWithCookie {
     path: string;
     httpOnly: boolean;
     maxAge: number;
-    sameSite: boolean | "lax" | "strict" | "none";
-    secure: boolean;
+    sameSite?: boolean | "lax" | "strict" | "none";
+    secure?: boolean;
 }
