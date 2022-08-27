@@ -4,12 +4,17 @@ import {User} from "./entities/user.entity";
 import {Repository} from "typeorm";
 import {CreateUserDto} from "./dto/create-user.dto";
 import * as bcrypt from "bcrypt";
+import {UpdateUserDto} from "./dto/update-user.dto";
+import {FilesService} from "../files/files.service";
+import {ConfigService} from "@nestjs/config";
 
 @Injectable()
 export class UserService {
   constructor(
       @InjectRepository(User)
       private readonly userRepository: Repository<User>,
+      private readonly filesService: FilesService,
+      private readonly configService: ConfigService,
   ) {}
 
   findOne(id: number) {
@@ -58,5 +63,19 @@ export class UserService {
   async removeRefreshToken(id: number): Promise<User> {
     const user = this.userRepository.create({id, currentHashedRefreshToken: null});
     return await this.userRepository.save(user);
+  }
+
+  async updateProfile(user: User, userInput: UpdateUserDto, file?: Express.Multer.File): Promise<User> {
+    const updatedUser = this.userRepository.create({
+      id: user.id,
+      ...userInput,
+    });
+
+    if(file) {
+      const { Key } = await this.filesService.uploadFile(file, 'profile');
+      user.imageUrl = this.configService.get('AWS_S3_IMAGE_URL') + Key;
+    }
+
+    return await this.userRepository.save(updatedUser);
   }
 }

@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import * as Joi from "@hapi/joi";
 import {APP_INTERCEPTOR} from "@nestjs/core";
 import {TransformInterceptor} from "./common/interceptors/transform.interceptor";
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import {TransformInterceptor} from "./common/interceptors/transform.interceptor"
       DatabaseModule,
       UserModule,
       AuthModule,
+      FilesModule,
   ],
   controllers: [AppController],
   providers: [
