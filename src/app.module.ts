@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import {ConfigModule} from "@nestjs/config";
+import {ConfigModule, ConfigService} from "@nestjs/config";
 import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
@@ -9,6 +9,8 @@ import * as Joi from "@hapi/joi";
 import {APP_INTERCEPTOR} from "@nestjs/core";
 import {TransformInterceptor} from "./common/interceptors/transform.interceptor";
 import { FilesModule } from './files/files.module';
+import { MailModule } from './mail/mail.module';
+import {BullModule} from "@nestjs/bull";
 
 @Module({
   imports: [
@@ -24,10 +26,25 @@ import { FilesModule } from './files/files.module';
             PORT: Joi.number(),
         }),
       }),
+      // BullModule.forRootAsync({
+      //   useFactory: (configService: ConfigService) => ({
+      //       redis: {
+      //           host: configService.get('REDIS_HOST'),
+      //           port: configService.get('REDIS_PORT'),
+      //       }
+      //   })
+      // }),
+      BullModule.forRoot({
+          redis: {
+              host: 'localhost',
+              port: 6379,
+          },
+      }),
       DatabaseModule,
       UserModule,
       AuthModule,
       FilesModule,
+      MailModule,
   ],
   controllers: [AppController],
   providers: [
