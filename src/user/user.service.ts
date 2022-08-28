@@ -17,10 +17,6 @@ export class UserService {
       private readonly configService: ConfigService,
   ) {}
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
   async signup(userInput: CreateUserDto): Promise<User> {
     const user = this.userRepository.create(userInput);
     return await this.userRepository.save(user);
