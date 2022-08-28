@@ -16,6 +16,7 @@ export class UserController {
 
   @Get('profile')
   @UseGuards(JwtAuthGuard)
+  @ApiOperation({ summary: "본인정보 조회 API" })
   async getProfile(
       @Req() { user }: RequestWithUser,
   ): Promise<User> {
