@@ -12,9 +12,9 @@ export class MailService {
     private readonly mailerService: MailerService,
   ) {}
 
-  async registerQue(): Promise<boolean> {
+  async sendWelcomeMail(user: User): Promise<boolean> {
     try {
-      await this.mailQue.add('welcome', {});
+      await this.mailQue.add('welcome', { user });
       return true;
     } catch (e) {
       console.log('Error queueing welcome mail to user');
@@ -27,7 +27,7 @@ export class MailService {
       await this.mailerService.sendMail({
         to: user.email,
         subject: `${user.nickname}님, 강남함바 가입을 축하드립니다!`,
-        template: './confirmation',
+        template: './welcome',
         context: {
           name: user.nickname,
         }
