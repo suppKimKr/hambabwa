@@ -51,4 +51,4 @@ Refactoring 20%
 
 - frontend - [hyundang](https://github.com/hyundang)
 - backend - [suppKimKr](https://github.com/suppKimKr), [hyeonjeong33](https://github.com/hyeonjeong33)
-- website - [강남함바](https://svc.hambabwa.com)
+- website - [강남함바](https://svc.hambabwa.kr)
