@@ -36,10 +36,11 @@ import {MailProcessor} from "./mail.processor";
         name: 'sendMail',
         useFactory: async (configService: ConfigService) => ({
           redis: {
-            host: 'localhost',
-            port: 6379,
+            host: configService.get('REDIS_HOST'),
+            port: configService.get('REDIS_PORT'),
           },
         }),
+        inject: [ConfigService],
       }),
   ],
   providers: [MailService, MailProcessor],

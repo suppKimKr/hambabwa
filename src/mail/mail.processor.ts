@@ -34,8 +34,9 @@ export class MailProcessor {
     @Process('welcome')
     async sendWelcomeEmail({ data }: Job): Promise<any> {
         console.log('Processor:@Process - Sending Welcome mail.');
+        const { user } = data;
         try {
-            return await this.mailService.sendUserWelcomeMail(data as User);
+            return await this.mailService.sendUserWelcomeMail(user);
         } catch (e) {
             console.error('Failed to send Welcome mail.', e.stack);
             throw e;
