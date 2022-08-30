@@ -2,7 +2,7 @@ import {BeforeInsert, Column, Entity} from "typeorm";
 import {AutoIncrementIdEntity} from "../../database/auto-increment-id-entity";
 import {Exclude} from "class-transformer";
 import {UserRole} from "../enums/user.role.enum";
-import * as bcrypt from "bcrypt";
+import * as bcrypt from "bcryptjs";
 import {OmitType} from "@nestjs/swagger";
 
 @Entity('TB_USER')

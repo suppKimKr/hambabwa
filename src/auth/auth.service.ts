@@ -2,7 +2,7 @@ import {Injectable, UnauthorizedException} from '@nestjs/common';
 import {LoginRequestDto} from "./dto/login.request.dto";
 import {ReadOnlyUserData, User} from "../user/entities/user.entity";
 import {UserService} from "../user/user.service";
-import * as bcrypt from "bcrypt";
+import * as bcrypt from "bcryptjs";
 import {TokenPayload, ResponseWithCookie} from "./interfaces";
 import {JwtService} from "@nestjs/jwt";
 import {ConfigService} from "@nestjs/config";
