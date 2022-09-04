@@ -9,6 +9,7 @@ import {Response} from "express";
 import {JwtRefreshGuard, LocalAuthGuard} from "./guards";
 import {RequestWithUser} from "./interfaces";
 import {ConfigService} from "@nestjs/config";
+import {MailService} from "../mail/mail.service";
 
 @Controller('auth')
 export class AuthController {
@@ -16,6 +17,7 @@ export class AuthController {
       private readonly userService: UserService,
       private readonly authService: AuthService,
       private readonly configService: ConfigService,
+      private readonly mailService: MailService,
   ) {}
 
   @Post("signup")
@@ -23,7 +25,9 @@ export class AuthController {
   async register(
       @Body() userInput: CreateUserDto
   ): Promise<User> {
-    return this.userService.signup(userInput);
+    const user = await this.userService.signup(userInput);
+    await this.mailService.sendWelcomeMail(user);
+    return user;
   }
 
   @Post("login")
