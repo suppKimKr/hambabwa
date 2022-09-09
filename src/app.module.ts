@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import {CacheModule, Module} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -34,6 +34,14 @@ import { BullModule } from '@nestjs/bull';
         },
       }),
       inject: [ConfigService],
+    }),
+    CacheModule.registerAsync({
+      useFactory: (configService: ConfigService) => ({
+        host: configService.get('REDIS_HOST'),
+        port: configService.get('REDIS_PORT'),
+      }),
+      inject: [ConfigService],
+      isGlobal: true,
     }),
     DatabaseModule,
     UserModule,

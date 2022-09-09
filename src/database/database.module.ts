@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {ConfigService} from "@nestjs/config";
+import {SnakeNamingStrategy} from "typeorm-naming-strategies";
 
 @Module({
   imports: [
@@ -19,6 +20,14 @@ import {ConfigService} from "@nestjs/config";
           ],
           timezone: 'Z',
           synchronize: true,
+          cache: {
+            type: "redis",
+            options: {
+              host: configService.get('REDIS_HOST'),
+              port: configService.get('REDIS_PORT'),
+            }
+          },
+          namingStrategy: new SnakeNamingStrategy(),
         }),
       }),
   ],

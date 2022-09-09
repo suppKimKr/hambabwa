@@ -1,12 +1,14 @@
-import {HttpException, HttpStatus, Injectable, UnauthorizedException} from '@nestjs/common';
+import {CACHE_MANAGER, HttpException, HttpStatus, Inject, Injectable, UnauthorizedException} from '@nestjs/common';
 import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "./entities/user.entity";
 import {Repository} from "typeorm";
 import {CreateUserDto} from "./dto/create-user.dto";
-import * as bcrypt from "bcryptjs";
+import {compare, hash} from "bcryptjs";
 import {UpdateUserDto} from "./dto/update-user.dto";
 import {FilesService} from "../files/files.service";
 import {ConfigService} from "@nestjs/config";
+import { Cache } from "cache-manager";
+import {generateRedisKey} from "../common/functions/generate.redis.key";
 
 @Injectable()
 export class UserService {
@@ -15,6 +17,8 @@ export class UserService {
       private readonly userRepository: Repository<User>,
       private readonly filesService: FilesService,
       private readonly configService: ConfigService,
+      @Inject(CACHE_MANAGER)
+      private readonly cacheManager: Cache
   ) {}
 
   async signup(userInput: CreateUserDto): Promise<User> {
@@ -31,10 +35,10 @@ export class UserService {
     )
   }
 
-  async setCurrentRefreshToken(refreshToken: string, user: User): Promise<User> {
-    const currentHashedRefreshToken: string = await user.getCurrentRefreshToken(refreshToken);
-    const userInstance: User = this.userRepository.create({ ...user, currentHashedRefreshToken });
-    return await this.userRepository.save(userInstance);
+  async setCurrentRefreshToken(refreshToken: string, user: User): Promise<void> {
+    const hashedRefreshToken = await hash(refreshToken, 10);
+    const key = generateRedisKey('User', user.id);
+    await this.cacheManager.set(key, hashedRefreshToken, this.configService.get('JWT_REFRESH_TOKEN_EXPIRATION_TIME'));
   }
 
   async findUserById(id: number): Promise<User> {
@@ -48,7 +52,7 @@ export class UserService {
 
   async getUserIfRefreshTokenMatches(refreshToken: string, id: number): Promise<User> {
     const user = await this.findUserById(id);
-    const isRefreshTokenMatching = await bcrypt.compare(refreshToken, user.currentHashedRefreshToken);
+    const isRefreshTokenMatching = await compare(refreshToken, user.currentHashedRefreshToken);
 
     if (!isRefreshTokenMatching) {
       throw new UnauthorizedException("Not found user for refresh token.");
