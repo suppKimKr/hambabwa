@@ -34,18 +34,18 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @ApiOperation({summary: "로그인"})
   async login(
+    @Req() { user }: RequestWithUser,
     @Body() userInput: LoginRequestDto,
     @Res({ passthrough: true }) res: Response
   ): Promise<User> {
-    const userInfo = await this.authService.login(userInput);
-    const { accessToken, ...accessOptions } = this.authService.getCookieWithJwtToken(userInfo);
-    const { refreshToken, ...refreshOptions } = this.authService.getCookieWithJwtRefreshToken(userInfo);
+    const { accessToken, ...accessOptions } = this.authService.getCookieWithJwtToken(user);
+    const { refreshToken, ...refreshOptions } = this.authService.getCookieWithJwtRefreshToken(user);
 
     res.cookie("Auth", accessToken, accessOptions);
     res.cookie("Refresh", refreshToken, refreshOptions);
 
-    await this.userService.setCurrentRefreshToken(refreshToken, userInfo);
-    return userInfo;
+    await this.userService.setCurrentRefreshToken(refreshToken, user);
+    return user;
   }
 
   @Post("logout")

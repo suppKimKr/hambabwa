@@ -51,13 +51,14 @@ export class UserService {
   }
 
   async getUserIfRefreshTokenMatches(refreshToken: string, id: number): Promise<User> {
-    const user = await this.findUserById(id);
-    const isRefreshTokenMatching = await compare(refreshToken, user.currentHashedRefreshToken);
+    const key = generateRedisKey('User', id);
+    const hashedRefreshToken = await this.cacheManager.get(key);
+    const isRefreshTokenMatching = await compare(refreshToken, hashedRefreshToken);
 
     if (!isRefreshTokenMatching) {
       throw new UnauthorizedException("Not found user for refresh token.");
     }
-    return user;
+    return this.userRepository.create({ id });
   }
 
   async removeRefreshToken(id: number): Promise<User> {
